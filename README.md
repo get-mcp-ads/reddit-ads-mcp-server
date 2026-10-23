@@ -27,16 +27,21 @@ Run locally with your own platform credentials and a client that supports stdio 
 
 ## What's new
 
+<!-- release-history:start -->
 **[v1.0.0: First standalone release](https://github.com/get-mcp-ads/reddit-ads-mcp-server/releases/tag/v1.0.0) · October 23, 2026**
 
-- Port the native Reddit Ads API v3 tools of getmcpads with their names, schemas and ownership checks.
+- Port the native Reddit Ads API v3 tools of getmcpads with their names, schemas and ownership checks: 31 read tools and 22 write tools, plus two resources.
 - Validate write payloads locally against Reddit's own schemas, pinned on 2026-09-11.
-- Require an explicit ad account allowlist, default to read-only and preview every write.
+- Require an explicit ad account allowlist, default to read-only and preview every write. Campaigns, ad groups and ads are created paused.
 - Renew access tokens in memory from a refresh token, never on disk.
 - Use fixed Reddit hosts, no redirects, timeouts, bounded responses and credential redaction, without automatic write retries.
 - Require a Node.js release with the October 2026 security fixes and check Node 22, 24 and 26 in CI.
+- No hosted creative UI, alerts, exports or MCP Apps integrations.
 
-[Full changelog](CHANGELOG.md) · [Source synchronization details](SOURCE_SYNC.md) · [All releases](https://github.com/get-mcp-ads/reddit-ads-mcp-server/releases)
+[Full changelog](CHANGELOG.md) · [All releases](https://github.com/get-mcp-ads/reddit-ads-mcp-server/releases)
+<!-- release-history:end -->
+
+Source synchronization: [SOURCE_SYNC.md](SOURCE_SYNC.md).
 
 ### Upgrade notes
 

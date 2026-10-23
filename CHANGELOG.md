@@ -1,7 +1,6 @@
 # Changelog
 
-## 1.0.0 - 2026-10-23
-
+## 1.0.0 - 2026-10-23 - First standalone release
 - Port the native Reddit Ads API v3 tools of getmcpads with their names, schemas and ownership checks: 31 read tools and 22 write tools, plus two resources.
 - Validate write payloads locally against Reddit's own schemas, pinned on 2026-09-11.
 - Require an explicit ad account allowlist, default to read-only and preview every write. Campaigns, ad groups and ads are created paused.

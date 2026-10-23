@@ -12,3 +12,5 @@ A version tag publishes everything, in the order the MCP Registry requires. The 
 Each step skips cleanly when its target already holds the version, so rerunning a partial release is safe. To publish an existing tag again, run the Release workflow manually and give it the tag.
 
 The README distinguishes source installation from package installation, because the GitHub release, npm and the registry can briefly differ while a release is in progress.
+
+Before tagging, add the release to CHANGELOG.md as `## X.Y.Z - YYYY-MM-DD - Title`, then run `npm run release-history`. The README shows every release from the changelog, and the test suite fails when it falls behind.
