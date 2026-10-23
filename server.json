@@ -1,0 +1,67 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.getmcpads/reddit-ads",
+  "title": "Reddit Ads",
+  "description": "Reddit Ads MCP server: 31 read tools, 22 opt-in preview-first writes.",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.getmcpads.com/tools/reddit-ads",
+  "repository": {
+    "url": "https://github.com/get-mcp-ads/reddit-ads-mcp-server",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@getmcpads/reddit-ads-mcp-server",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "REDDIT_ADS_ACCESS_TOKEN",
+          "description": "Reddit OAuth access token with adsread. Optional when the refresh credentials are set.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "REDDIT_ADS_REFRESH_TOKEN",
+          "description": "Permanent refresh token. With the app credentials, the server renews tokens in memory.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "REDDIT_ADS_CLIENT_ID",
+          "description": "Client ID of your Reddit app, needed with the refresh token.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "REDDIT_ADS_CLIENT_SECRET",
+          "description": "Secret of your Reddit app, needed with the refresh token.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "REDDIT_ADS_ACCOUNT_IDS",
+          "description": "Comma-separated Reddit ad account IDs (a2_...) the server may reach. Required even for reads.",
+          "isRequired": true,
+          "isSecret": false
+        },
+        {
+          "name": "REDDIT_ADS_ENABLE_WRITES",
+          "description": "true exposes 22 write tools, each previewing until confirm:true. Defaults to false.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "REDDIT_ADS_USER_AGENT",
+          "description": "User-Agent sent to Reddit, ideally naming your app and Reddit username.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

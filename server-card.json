@@ -1,0 +1,4678 @@
+{
+  "serverInfo": {
+    "name": "@getmcpads/reddit-ads-mcp-server",
+    "title": "Reddit Ads MCP server: 31 read tools, 22 opt-in preview-first writes.",
+    "version": "1.0.0",
+    "websiteUrl": "https://www.getmcpads.com/tools/reddit-ads",
+    "icons": [
+      {
+        "src": "https://mcp.getmcpads.com/icon.svg",
+        "mimeType": "image/svg+xml"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "reddit_get_setup_guide",
+      "title": "reddit get setup guide",
+      "description": "Reddit connector coverage, prerequisites, units, renaming and known limits. Read it before planning writes or answering what this server cannot do.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_write_schema",
+      "title": "reddit get write schema",
+      "description": "Exact pinned native schemas for Reddit creation and edits, including targeting and all implemented campaign/ad formats. Provider acceptance is separate from local schema validation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "enum": [
+              "campaign_create",
+              "campaign_update",
+              "ad_group_create",
+              "ad_group_update",
+              "ad_create",
+              "ad_update",
+              "saved_audience_create",
+              "saved_audience_update",
+              "custom_audience_create",
+              "post_create",
+              "post_update",
+              "asset_upload",
+              "asset_update",
+              "catalog_create",
+              "catalog_update",
+              "product_set_create",
+              "product_set_update",
+              "products_upsert"
+            ],
+            "description": "Native write operation whose pinned schema to return, such as campaign_create or ad_group_update."
+          }
+        },
+        "required": [
+          "operation"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_reporting_schema",
+      "title": "reddit get reporting schema",
+      "description": "Reddit metric and dimension inventory; configured targeting is read with reddit_get_targeting, not inferred from reporting.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_health_check",
+      "title": "reddit health check",
+      "description": "Read the allowed Reddit ad account, its business, currency and timezone. API access is not proof of delivery or full objective eligibility.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_campaigns",
+      "title": "reddit get campaigns",
+      "description": "Read Reddit campaigns, including native configuration and configured/effective status. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_campaign",
+      "title": "reddit get campaign",
+      "description": "Read one Reddit campaign and verify that it belongs to the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit campaign to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_ad_groups",
+      "title": "reddit get ad groups",
+      "description": "Read Reddit ad groups, including native configuration and configured/effective status. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_ad_group",
+      "title": "reddit get ad group",
+      "description": "Read one Reddit ad group and verify that it belongs to the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad group to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_ads",
+      "title": "reddit get ads",
+      "description": "Read Reddit ads, including native configuration and configured/effective status. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_ad",
+      "title": "reddit get ad",
+      "description": "Read one Reddit ad and verify that it belongs to the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_saved_audiences",
+      "title": "reddit get saved audiences",
+      "description": "Read Reddit saved audiences, including native configuration and configured/effective status. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_saved_audience",
+      "title": "reddit get saved audience",
+      "description": "Read one Reddit saved audience and verify that it belongs to the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit saved audience to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_custom_audiences",
+      "title": "reddit get custom audiences",
+      "description": "Read Reddit custom audiences, including native configuration and configured/effective status. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_custom_audience",
+      "title": "reddit get custom audience",
+      "description": "Read one Reddit custom audience and verify that it belongs to the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit custom audience to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_lead_gen_forms",
+      "title": "reddit get lead gen forms",
+      "description": "Read Reddit lead gen forms, including native configuration and configured/effective status. Form configuration only; lead submissions are never returned. Pagination returns an opaque cursor; every further page needs an explicit call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_lead_form",
+      "title": "reddit get lead form",
+      "description": "Read one Reddit lead form and verify that it belongs to the ad account. Form configuration only; lead submissions are never returned.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit lead form to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_targeting",
+      "title": "reddit get targeting",
+      "description": "Read actual ad-group targeting: inclusions, exclusions, geo, age/gender, languages, interests, communities, keywords, devices and audience IDs. This is configuration, not delivery demographics.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "adGroupId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Ad group ID whose targeting to read. It must belong to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "adGroupId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_targeting_options",
+      "title": "reddit get targeting options",
+      "description": "Discover valid native targeting values. Communities can be searched; large lists are paginated or explicitly marked partial.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "geolocations",
+              "languages",
+              "interests",
+              "devices",
+              "carriers",
+              "communities"
+            ],
+            "description": "Targeting dimension whose valid values to list."
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Search text for communities. Ignored for the other kinds."
+          },
+          "country": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "description": "Two-letter uppercase country code, such as US, for kinds that accept a country."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "kind"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_profiles",
+      "title": "reddit get profiles",
+      "description": "List profiles accessible to the allowed Reddit ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_pixels",
+      "title": "reddit get pixels",
+      "description": "List pixels accessible to the allowed Reddit ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_insights",
+      "title": "reddit get insights",
+      "description": "Native Reddit reporting with metrics and entity/audience breakdowns, explicit UTC dates and pagination. Empty results validate transport only. Reported audience demographics differ from configured targeting.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "startsAt": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:00:00Z$",
+            "description": "Report start in UTC on the hour, such as 2026-10-01T00:00:00Z."
+          },
+          "endsAt": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:00:00Z$",
+            "description": "Report end in UTC on the hour, after startsAt. Hourly breakdowns cover at most seven days."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ACCOUNT_ID",
+                "AD_CREATE_TIME",
+                "AD_EFFECTIVE_STATUS",
+                "AGE",
+                "AD_GROUP_ID",
+                "AD_ID",
+                "AD_UPDATE_TIME",
+                "ADGROUP_CREATE_TIME",
+                "ADGROUP_UPDATE_TIME",
+                "APP_INSTALL_ADD_PAYMENT_INFO_COUNT",
+                "APP_INSTALL_ADD_PAYMENT_INFO_CVR",
+                "APP_INSTALL_ADD_PAYMENT_INFO_ECPA",
+                "APP_INSTALL_ADD_TO_CART_COUNT",
+                "APP_INSTALL_ADD_TO_CART_CVR",
+                "APP_INSTALL_ADD_TO_CART_ECPA",
+                "APP_INSTALL_APP_LAUNCH_COUNT",
+                "APP_INSTALL_APP_LAUNCH_CVR",
+                "APP_INSTALL_APP_LAUNCH_ECPA",
+                "APP_INSTALL_COMPLETED_TUTORIAL_COUNT",
+                "APP_INSTALL_COMPLETED_TUTORIAL_CVR",
+                "APP_INSTALL_COMPLETED_TUTORIAL_ECPA",
+                "APP_INSTALL_INSTALL_COUNT",
+                "APP_INSTALL_INSTALL_CVR",
+                "APP_INSTALL_INSTALL_ECPA",
+                "APP_INSTALL_LEVEL_ACHIEVED_COUNT",
+                "APP_INSTALL_LEVEL_ACHIEVED_CVR",
+                "APP_INSTALL_LEVEL_ACHIEVED_ECPA",
+                "APP_INSTALL_MMP_AD_CLICK_COUNT",
+                "APP_INSTALL_MMP_AD_CLICK_CVR",
+                "APP_INSTALL_MMP_AD_CLICK_ECPA",
+                "APP_INSTALL_MMP_AD_VIEW_COUNT",
+                "APP_INSTALL_MMP_AD_VIEW_CVR",
+                "APP_INSTALL_MMP_AD_VIEW_ECPA",
+                "APP_INSTALL_MMP_ADD_PAYMENT_INFO_COUNT",
+                "APP_INSTALL_MMP_ADD_PAYMENT_INFO_CVR",
+                "APP_INSTALL_MMP_ADD_PAYMENT_INFO_ECPA",
+                "APP_INSTALL_MMP_ADD_TO_CART_COUNT",
+                "APP_INSTALL_MMP_ADD_TO_CART_CVR",
+                "APP_INSTALL_MMP_ADD_TO_CART_ECPA",
+                "APP_INSTALL_MMP_ADD_TO_WISHLIST_COUNT",
+                "APP_INSTALL_MMP_ADD_TO_WISHLIST_CVR",
+                "APP_INSTALL_MMP_ADD_TO_WISHLIST_ECPA",
+                "APP_INSTALL_MMP_APP_LAUNCH_COUNT",
+                "APP_INSTALL_MMP_APP_LAUNCH_CVR",
+                "APP_INSTALL_MMP_APP_LAUNCH_ECPA",
+                "APP_INSTALL_MMP_CHECKOUT_COUNT",
+                "APP_INSTALL_MMP_CHECKOUT_CVR",
+                "APP_INSTALL_MMP_CHECKOUT_ECPA",
+                "APP_INSTALL_MMP_COMPLETED_TUTORIAL_COUNT",
+                "APP_INSTALL_MMP_COMPLETED_TUTORIAL_CVR",
+                "APP_INSTALL_MMP_COMPLETED_TUTORIAL_ECPA",
+                "APP_INSTALL_MMP_FIRST_TIME_PURCHASE_COUNT",
+                "APP_INSTALL_MMP_FIRST_TIME_PURCHASE_CVR",
+                "APP_INSTALL_MMP_FIRST_TIME_PURCHASE_ECPA",
+                "APP_INSTALL_MMP_INSTALL_COUNT",
+                "APP_INSTALL_MMP_INSTALL_CVR",
+                "APP_INSTALL_MMP_INSTALL_ECPA",
+                "APP_INSTALL_MMP_LEVEL_ACHIEVED_COUNT",
+                "APP_INSTALL_MMP_LEVEL_ACHIEVED_CVR",
+                "APP_INSTALL_MMP_LEVEL_ACHIEVED_ECPA",
+                "APP_INSTALL_MMP_LOGIN_COUNT",
+                "APP_INSTALL_MMP_LOGIN_CVR",
+                "APP_INSTALL_MMP_LOGIN_ECPA",
+                "APP_INSTALL_MMP_ONBOARD_COMPLETED_COUNT",
+                "APP_INSTALL_MMP_ONBOARD_COMPLETED_CVR",
+                "APP_INSTALL_MMP_ONBOARD_COMPLETED_ECPA",
+                "APP_INSTALL_MMP_ONBOARD_STARTED_COUNT",
+                "APP_INSTALL_MMP_ONBOARD_STARTED_CVR",
+                "APP_INSTALL_MMP_ONBOARD_STARTED_ECPA",
+                "APP_INSTALL_MMP_PURCHASE_COUNT",
+                "APP_INSTALL_MMP_PURCHASE_CVR",
+                "APP_INSTALL_MMP_PURCHASE_ECPA",
+                "APP_INSTALL_MMP_RATE_COUNT",
+                "APP_INSTALL_MMP_RATE_CVR",
+                "APP_INSTALL_MMP_RATE_ECPA",
+                "APP_INSTALL_MMP_REINSTALL_COUNT",
+                "APP_INSTALL_MMP_REINSTALL_CVR",
+                "APP_INSTALL_MMP_REINSTALL_ECPA",
+                "APP_INSTALL_MMP_REVENUE",
+                "APP_INSTALL_MMP_ROAS",
+                "APP_INSTALL_MMP_SEARCH_COUNT",
+                "APP_INSTALL_MMP_SEARCH_CVR",
+                "APP_INSTALL_MMP_SEARCH_ECPA",
+                "APP_INSTALL_MMP_SIGN_UP_COUNT",
+                "APP_INSTALL_MMP_SIGN_UP_CVR",
+                "APP_INSTALL_MMP_SIGN_UP_ECPA",
+                "APP_INSTALL_MMP_SPEND_CREDITS_COUNT",
+                "APP_INSTALL_MMP_SPEND_CREDITS_CVR",
+                "APP_INSTALL_MMP_SPEND_CREDITS_ECPA",
+                "APP_INSTALL_MMP_START_TRIAL_COUNT",
+                "APP_INSTALL_MMP_START_TRIAL_CVR",
+                "APP_INSTALL_MMP_START_TRIAL_ECPA",
+                "APP_INSTALL_MMP_SUBSCRIBE_COUNT",
+                "APP_INSTALL_MMP_SUBSCRIBE_CVR",
+                "APP_INSTALL_MMP_SUBSCRIBE_ECPA",
+                "APP_INSTALL_MMP_TOTAL_CONVERSIONS",
+                "APP_INSTALL_MMP_TOTAL_INSTALL_COUNT",
+                "APP_INSTALL_MMP_TOTAL_INSTALL_CVR",
+                "APP_INSTALL_MMP_TOTAL_INSTALL_ECPA",
+                "APP_INSTALL_MMP_UNLOCK_ACHIEVEMENT_COUNT",
+                "APP_INSTALL_MMP_UNLOCK_ACHIEVEMENT_CVR",
+                "APP_INSTALL_MMP_UNLOCK_ACHIEVEMENT_ECPA",
+                "APP_INSTALL_MMP_VIEW_CONTENT_COUNT",
+                "APP_INSTALL_MMP_VIEW_CONTENT_CVR",
+                "APP_INSTALL_MMP_VIEW_CONTENT_ECPA",
+                "APP_INSTALL_PURCHASE_COUNT",
+                "APP_INSTALL_PURCHASE_CVR",
+                "APP_INSTALL_PURCHASE_ECPA",
+                "APP_INSTALL_REVENUE",
+                "APP_INSTALL_ROAS_DOUBLE",
+                "APP_INSTALL_SEARCH_COUNT",
+                "APP_INSTALL_SEARCH_CVR",
+                "APP_INSTALL_SEARCH_ECPA",
+                "APP_INSTALL_SIGN_UP_COUNT",
+                "APP_INSTALL_SIGN_UP_CVR",
+                "APP_INSTALL_SIGN_UP_ECPA",
+                "APP_INSTALL_SKAN_AD_CLICK_COUNT",
+                "APP_INSTALL_SKAN_AD_CLICK_CVR",
+                "APP_INSTALL_SKAN_AD_CLICK_ECPA",
+                "APP_INSTALL_SKAN_AD_VIEW_COUNT",
+                "APP_INSTALL_SKAN_AD_VIEW_CVR",
+                "APP_INSTALL_SKAN_AD_VIEW_ECPA",
+                "APP_INSTALL_SKAN_ADD_PAYMENT_INFO_COUNT",
+                "APP_INSTALL_SKAN_ADD_PAYMENT_INFO_CVR",
+                "APP_INSTALL_SKAN_ADD_PAYMENT_INFO_ECPA",
+                "APP_INSTALL_SKAN_ADD_TO_CART_COUNT",
+                "APP_INSTALL_SKAN_ADD_TO_CART_CVR",
+                "APP_INSTALL_SKAN_ADD_TO_CART_ECPA",
+                "APP_INSTALL_SKAN_ADD_TO_WISHLIST_COUNT",
+                "APP_INSTALL_SKAN_ADD_TO_WISHLIST_CVR",
+                "APP_INSTALL_SKAN_ADD_TO_WISHLIST_ECPA",
+                "APP_INSTALL_SKAN_APP_LAUNCH_COUNT",
+                "APP_INSTALL_SKAN_APP_LAUNCH_CVR",
+                "APP_INSTALL_SKAN_APP_LAUNCH_ECPA",
+                "APP_INSTALL_SKAN_CHECKOUT_COUNT",
+                "APP_INSTALL_SKAN_CHECKOUT_CVR",
+                "APP_INSTALL_SKAN_CHECKOUT_ECPA",
+                "APP_INSTALL_SKAN_COMPLETED_TUTORIAL_COUNT",
+                "APP_INSTALL_SKAN_COMPLETED_TUTORIAL_CVR",
+                "APP_INSTALL_SKAN_COMPLETED_TUTORIAL_ECPA",
+                "APP_INSTALL_SKAN_FIRST_TIME_PURCHASE_COUNT",
+                "APP_INSTALL_SKAN_FIRST_TIME_PURCHASE_CVR",
+                "APP_INSTALL_SKAN_FIRST_TIME_PURCHASE_ECPA",
+                "APP_INSTALL_SKAN_INSTALL_COUNT",
+                "APP_INSTALL_SKAN_INSTALL_CVR",
+                "APP_INSTALL_SKAN_INSTALL_ECPA",
+                "APP_INSTALL_SKAN_LEVEL_ACHIEVED_COUNT",
+                "APP_INSTALL_SKAN_LEVEL_ACHIEVED_CVR",
+                "APP_INSTALL_SKAN_LEVEL_ACHIEVED_ECPA",
+                "APP_INSTALL_SKAN_LOGIN_COUNT",
+                "APP_INSTALL_SKAN_LOGIN_CVR",
+                "APP_INSTALL_SKAN_LOGIN_ECPA",
+                "APP_INSTALL_SKAN_ONBOARD_COMPLETED_COUNT",
+                "APP_INSTALL_SKAN_ONBOARD_COMPLETED_CVR",
+                "APP_INSTALL_SKAN_ONBOARD_COMPLETED_ECPA",
+                "APP_INSTALL_SKAN_ONBOARD_STARTED_COUNT",
+                "APP_INSTALL_SKAN_ONBOARD_STARTED_CVR",
+                "APP_INSTALL_SKAN_ONBOARD_STARTED_ECPA",
+                "APP_INSTALL_SKAN_PURCHASE_COUNT",
+                "APP_INSTALL_SKAN_PURCHASE_CVR",
+                "APP_INSTALL_SKAN_PURCHASE_ECPA",
+                "APP_INSTALL_SKAN_RATE_COUNT",
+                "APP_INSTALL_SKAN_RATE_CVR",
+                "APP_INSTALL_SKAN_RATE_ECPA",
+                "APP_INSTALL_SKAN_REINSTALL_COUNT",
+                "APP_INSTALL_SKAN_REINSTALL_CVR",
+                "APP_INSTALL_SKAN_REINSTALL_ECPA",
+                "APP_INSTALL_SKAN_REVENUE",
+                "APP_INSTALL_SKAN_ROAS",
+                "APP_INSTALL_SKAN_SEARCH_COUNT",
+                "APP_INSTALL_SKAN_SEARCH_CVR",
+                "APP_INSTALL_SKAN_SEARCH_ECPA",
+                "APP_INSTALL_SKAN_SIGN_UP_COUNT",
+                "APP_INSTALL_SKAN_SIGN_UP_CVR",
+                "APP_INSTALL_SKAN_SIGN_UP_ECPA",
+                "APP_INSTALL_SKAN_SPEND_CREDITS_COUNT",
+                "APP_INSTALL_SKAN_SPEND_CREDITS_CVR",
+                "APP_INSTALL_SKAN_SPEND_CREDITS_ECPA",
+                "APP_INSTALL_SKAN_START_TRIAL_COUNT",
+                "APP_INSTALL_SKAN_START_TRIAL_CVR",
+                "APP_INSTALL_SKAN_START_TRIAL_ECPA",
+                "APP_INSTALL_SKAN_SUBSCRIBE_COUNT",
+                "APP_INSTALL_SKAN_SUBSCRIBE_CVR",
+                "APP_INSTALL_SKAN_SUBSCRIBE_ECPA",
+                "APP_INSTALL_SKAN_TOTAL_CONVERSIONS",
+                "APP_INSTALL_SKAN_TOTAL_INSTALL_COUNT",
+                "APP_INSTALL_SKAN_TOTAL_INSTALL_CVR",
+                "APP_INSTALL_SKAN_TOTAL_INSTALL_ECPA",
+                "APP_INSTALL_SKAN_UNKNOWN_COUNT",
+                "APP_INSTALL_SKAN_UNLOCK_ACHIEVEMENT_COUNT",
+                "APP_INSTALL_SKAN_UNLOCK_ACHIEVEMENT_CVR",
+                "APP_INSTALL_SKAN_UNLOCK_ACHIEVEMENT_ECPA",
+                "APP_INSTALL_SKAN_VIEW_CONTENT_COUNT",
+                "APP_INSTALL_SKAN_VIEW_CONTENT_CVR",
+                "APP_INSTALL_SKAN_VIEW_CONTENT_ECPA",
+                "APP_INSTALL_SPEND_CREDITS_COUNT",
+                "APP_INSTALL_SPEND_CREDITS_CVR",
+                "APP_INSTALL_SPEND_CREDITS_ECPA",
+                "APP_INSTALL_TOTAL_CONVERSIONS",
+                "APP_INSTALL_VIEW_CONTENT_COUNT",
+                "APP_INSTALL_VIEW_CONTENT_CVR",
+                "APP_INSTALL_VIEW_CONTENT_ECPA",
+                "BID_STRATEGY",
+                "CAMPAIGN_CREATE_TIME",
+                "CAMPAIGN_ID",
+                "CAMPAIGN_UPDATE_TIME",
+                "CLICKS",
+                "COMMUNITY",
+                "CONVERSION_ADD_TO_CART_AVG_VALUE",
+                "CONVERSION_ADD_TO_CART_CLICKS",
+                "CONVERSION_ADD_TO_CART_ECPA",
+                "CONVERSION_ADD_TO_CART_TOTAL_ITEMS",
+                "CONVERSION_ADD_TO_CART_TOTAL_VALUE",
+                "CONVERSION_ADD_TO_CART_VIEWS",
+                "CONVERSION_ADD_TO_WISHLIST_AVG_VALUE",
+                "CONVERSION_ADD_TO_WISHLIST_CLICKS",
+                "CONVERSION_ADD_TO_WISHLIST_ECPA",
+                "CONVERSION_ADD_TO_WISHLIST_TOTAL_ITEMS",
+                "CONVERSION_ADD_TO_WISHLIST_TOTAL_VALUE",
+                "CONVERSION_ADD_TO_WISHLIST_VIEWS",
+                "CONVERSION_CUSTOM_AVG_VALUE",
+                "CONVERSION_CUSTOM_CLICKS",
+                "CONVERSION_CUSTOM_ECPA",
+                "CONVERSION_CUSTOM_EVENT_10_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_10_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_10_ECPA",
+                "CONVERSION_CUSTOM_EVENT_10_ROAS",
+                "CONVERSION_CUSTOM_EVENT_10_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_10_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_10_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_11_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_11_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_11_ECPA",
+                "CONVERSION_CUSTOM_EVENT_11_ROAS",
+                "CONVERSION_CUSTOM_EVENT_11_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_11_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_11_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_12_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_12_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_12_ECPA",
+                "CONVERSION_CUSTOM_EVENT_12_ROAS",
+                "CONVERSION_CUSTOM_EVENT_12_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_12_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_12_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_13_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_13_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_13_ECPA",
+                "CONVERSION_CUSTOM_EVENT_13_ROAS",
+                "CONVERSION_CUSTOM_EVENT_13_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_13_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_13_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_14_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_14_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_14_ECPA",
+                "CONVERSION_CUSTOM_EVENT_14_ROAS",
+                "CONVERSION_CUSTOM_EVENT_14_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_14_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_14_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_15_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_15_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_15_ECPA",
+                "CONVERSION_CUSTOM_EVENT_15_ROAS",
+                "CONVERSION_CUSTOM_EVENT_15_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_15_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_15_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_16_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_16_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_16_ECPA",
+                "CONVERSION_CUSTOM_EVENT_16_ROAS",
+                "CONVERSION_CUSTOM_EVENT_16_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_16_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_16_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_17_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_17_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_17_ECPA",
+                "CONVERSION_CUSTOM_EVENT_17_ROAS",
+                "CONVERSION_CUSTOM_EVENT_17_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_17_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_17_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_18_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_18_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_18_ECPA",
+                "CONVERSION_CUSTOM_EVENT_18_ROAS",
+                "CONVERSION_CUSTOM_EVENT_18_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_18_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_18_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_19_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_19_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_19_ECPA",
+                "CONVERSION_CUSTOM_EVENT_19_ROAS",
+                "CONVERSION_CUSTOM_EVENT_19_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_19_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_19_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_1_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_1_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_1_ECPA",
+                "CONVERSION_CUSTOM_EVENT_1_ROAS",
+                "CONVERSION_CUSTOM_EVENT_1_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_1_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_1_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_20_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_20_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_20_ECPA",
+                "CONVERSION_CUSTOM_EVENT_20_ROAS",
+                "CONVERSION_CUSTOM_EVENT_20_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_20_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_20_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_2_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_2_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_2_ECPA",
+                "CONVERSION_CUSTOM_EVENT_2_ROAS",
+                "CONVERSION_CUSTOM_EVENT_2_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_2_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_2_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_3_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_3_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_3_ECPA",
+                "CONVERSION_CUSTOM_EVENT_3_ROAS",
+                "CONVERSION_CUSTOM_EVENT_3_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_3_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_3_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_4_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_4_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_4_ECPA",
+                "CONVERSION_CUSTOM_EVENT_4_ROAS",
+                "CONVERSION_CUSTOM_EVENT_4_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_4_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_4_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_5_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_5_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_5_ECPA",
+                "CONVERSION_CUSTOM_EVENT_5_ROAS",
+                "CONVERSION_CUSTOM_EVENT_5_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_5_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_5_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_6_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_6_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_6_ECPA",
+                "CONVERSION_CUSTOM_EVENT_6_ROAS",
+                "CONVERSION_CUSTOM_EVENT_6_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_6_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_6_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_7_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_7_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_7_ECPA",
+                "CONVERSION_CUSTOM_EVENT_7_ROAS",
+                "CONVERSION_CUSTOM_EVENT_7_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_7_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_7_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_8_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_8_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_8_ECPA",
+                "CONVERSION_CUSTOM_EVENT_8_ROAS",
+                "CONVERSION_CUSTOM_EVENT_8_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_8_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_8_VIEWS",
+                "CONVERSION_CUSTOM_EVENT_9_AVG_VALUE",
+                "CONVERSION_CUSTOM_EVENT_9_CLICKS",
+                "CONVERSION_CUSTOM_EVENT_9_ECPA",
+                "CONVERSION_CUSTOM_EVENT_9_ROAS",
+                "CONVERSION_CUSTOM_EVENT_9_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_EVENT_9_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_EVENT_9_VIEWS",
+                "CONVERSION_CUSTOM_TOTAL_ITEMS",
+                "CONVERSION_CUSTOM_TOTAL_VALUE",
+                "CONVERSION_CUSTOM_VIEWS",
+                "CONVERSION_LEAD_AVG_VALUE",
+                "CONVERSION_LEAD_CLICKS",
+                "CONVERSION_LEAD_ECPA",
+                "CONVERSION_LEAD_TOTAL_VALUE",
+                "CONVERSION_LEAD_VIEWS",
+                "CONVERSION_PAGE_VISIT_CLICKS",
+                "CONVERSION_PAGE_VISIT_ECPA",
+                "CONVERSION_PAGE_VISIT_VIEWS",
+                "CONVERSION_PURCHASE_AVG_VALUE",
+                "CONVERSION_PURCHASE_CLICKS",
+                "CONVERSION_PURCHASE_ECPA",
+                "CONVERSION_PURCHASE_TOTAL_ITEMS",
+                "CONVERSION_PURCHASE_TOTAL_VALUE",
+                "CONVERSION_PURCHASE_VIEWS",
+                "CONVERSION_ROAS",
+                "CONVERSION_SEARCH_CLICKS",
+                "CONVERSION_SEARCH_ECPA",
+                "CONVERSION_SEARCH_VIEWS",
+                "CONVERSION_SIGN_UP_CLICKS",
+                "CONVERSION_SIGN_UP_ECPA",
+                "CONVERSION_SIGN_UP_VIEWS",
+                "CONVERSION_SIGNUP_AVG_VALUE",
+                "CONVERSION_SIGNUP_TOTAL_VALUE",
+                "CONVERSION_VIEW_CONTENT_CLICKS",
+                "CONVERSION_VIEW_CONTENT_ECPA",
+                "CONVERSION_VIEW_CONTENT_VIEWS",
+                "COUNTRY",
+                "CPC",
+                "CPV",
+                "CTR",
+                "CURRENCY",
+                "DATE",
+                "DATETIME",
+                "DMA",
+                "ECPM",
+                "FREQUENCY",
+                "GALLERY_ITEM_CAPTION",
+                "GALLERY_ITEM_ID",
+                "GENDER",
+                "HOUR",
+                "IMPRESSIONS",
+                "INTEREST",
+                "KEY_CONVERSION_CLICKS",
+                "KEY_CONVERSION_ECPA",
+                "KEY_CONVERSION_RATE",
+                "KEY_CONVERSION_TOTAL_COUNT",
+                "KEY_CONVERSION_VIEWS",
+                "KEYWORD",
+                "PLACEMENT",
+                "POST_ID",
+                "PRIORITY",
+                "REACH",
+                "REDDIT_LEADS",
+                "REGION",
+                "SPEND",
+                "VIDEO_COMPLETION_RATE",
+                "VIDEO_FULLY_VIEWABLE_IMPRESSIONS",
+                "VIDEO_PLAYS_EXPANDED",
+                "VIDEO_PLAYS_WITH_SOUND",
+                "VIDEO_STARTED",
+                "VIDEO_VIEW_RATE",
+                "VIDEO_VIEW_RATE_6_SECONDS",
+                "VIDEO_VIEW_RATE_15_SECONDS",
+                "VIDEO_VIEWABLE_IMPRESSIONS",
+                "VIDEO_WATCHED_100_PERCENT",
+                "VIDEO_WATCHED_10_SECONDS",
+                "VIDEO_WATCHED_25_PERCENT",
+                "VIDEO_WATCHED_3_SECONDS",
+                "VIDEO_WATCHED_50_PERCENT",
+                "VIDEO_WATCHED_5_SECONDS",
+                "VIDEO_WATCHED_75_PERCENT",
+                "VIDEO_WATCHED_95_PERCENT",
+                "ENGAGED_CLICK",
+                "VIDEO_VIEWABLE_WATCHED_6_SECONDS",
+                "VIDEO_VIEWABLE_WATCHED_15_SECONDS",
+                "COST_PER_3_SECOND_VIEW",
+                "COST_PER_6_SECOND_VIEW",
+                "COST_PER_15_SECOND_VIEW",
+                "COST_PER_COMPLETED_VIEW",
+                "CLICK_ATTRIBUTION_WINDOW",
+                "VIEW_ATTRIBUTION_WINDOW"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 100,
+            "description": "Native Reddit field names, e.g. IMPRESSIONS, CLICKS, SPEND, CONVERSION_SIGN_UP_CLICKS, CONVERSION_SIGN_UP_VIEWS. Use reddit_get_reporting_schema for supported fields; never guess names. Lowercase spellings are accepted."
+          },
+          "breakdowns": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "AD_ACCOUNT_ID",
+                "AD_GROUP_ID",
+                "AD_ID",
+                "CAMPAIGN_ID",
+                "COUNTRY",
+                "DATE",
+                "HOUR",
+                "DMA",
+                "METRO",
+                "CAROUSEL_CARD",
+                "GALLERY_ITEM_ID",
+                "GENDER",
+                "INTEREST",
+                "KEYWORD",
+                "PLACEMENT",
+                "OS_TYPE",
+                "ASSET_ID",
+                "REGION",
+                "COMMUNITY",
+                "LANGUAGE"
+              ]
+            },
+            "maxItems": 3,
+            "default": [],
+            "description": "Native breakdowns, e.g. CAMPAIGN_ID, AD_GROUP_ID or AD_ID. At most three. Lowercase spellings are accepted. API compatibility constraints still apply."
+          },
+          "filter": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "Optional native Reddit report filter expression, passed unchanged."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "startsAt",
+          "endsAt",
+          "fields"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_creative_assets",
+      "title": "reddit get creative assets",
+      "description": "List the asset library of a profile attached to the ad account; unused files are not necessarily ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "profileId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "profileId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_posts",
+      "title": "reddit get posts",
+      "description": "List advertising structured posts for a profile attached to this account. Returns native image/video/carousel/text configuration.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "profileId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "profileId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_post",
+      "title": "reddit get post",
+      "description": "Read an ad structured post after profile ownership verification.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Structured post ID to read. Its profile must be attached to adAccountId."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_asset_uploads",
+      "title": "reddit get asset uploads",
+      "description": "Poll processing of creative imports through the profile; ACTIVE is media-ready, not advertising delivery.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "profileId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
+          },
+          "uploadIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[\\w.-]{1,128}$",
+              "description": "Upload ID returned by reddit_upload_creative_assets."
+            },
+            "minItems": 1,
+            "maxItems": 50,
+            "description": "Upload IDs returned by reddit_upload_creative_assets, 1 to 50."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "profileId",
+          "uploadIds"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_post_job",
+      "title": "reddit get post job",
+      "description": "Poll a previously created structured post using its signed job receipt. Does not accept arbitrary job IDs from another account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "receipt": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Receipt returned by a confirmed reddit_create_post in this server process. Valid for seven days."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "receipt"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_list_ad_creatives",
+      "title": "reddit list ad creatives",
+      "description": "Resolve ad-linked image/video/carousel assets with explicit coverage. A video cover does not establish its motion/audio; use full media when available. Media URLs are returned, never downloaded.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "adIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[\\w.-]{1,128}$",
+              "description": "Ad ID that belongs to adAccountId."
+            },
+            "minItems": 1,
+            "maxItems": 20,
+            "description": "Specific ad IDs to resolve, 1 to 20. When omitted, the account's ads are read page by page."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Ads to read when adIds is omitted. At most 20 are resolved per call; larger values are capped at 20."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_catalogs",
+      "title": "reddit get catalogs",
+      "description": "Read product catalogs of the business owning the ad account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_products",
+      "title": "reddit get products",
+      "description": "Read products from a catalog owned by the ad account's business.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "catalogId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Product catalog ID. List them with reddit_get_catalogs."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "catalogId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_product_sets",
+      "title": "reddit get product sets",
+      "description": "Read product sets from a catalog owned by the ad account's business.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "catalogId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Product catalog ID. List them with reddit_get_catalogs."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "catalogId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_get_catalog_imports",
+      "title": "reddit get catalog imports",
+      "description": "Read catalog imports from a catalog owned by the ad account's business.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "catalogId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Product catalog ID. List them with reddit_get_catalogs."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50,
+            "description": "Items per page, 1 to 100. Defaults to 50."
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 3000,
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "catalogId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_campaign",
+      "title": "reddit create campaign",
+      "description": "Create a Reddit campaign with native fields, including supported objectives and formats. Previews by default. Campaigns, ad groups and ads are always created PAUSED. Read reddit_get_write_schema(operation=campaign_create) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_campaign",
+      "title": "reddit update campaign",
+      "description": "Update a Reddit campaign with native fields, including supported objectives and formats. Previews by default. configured_status accepts PAUSED or ACTIVE only; ACTIVE can spend budget. Read reddit_get_write_schema(operation=campaign_update) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit campaign to update. It must belong to adAccountId."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_ad_group",
+      "title": "reddit create ad group",
+      "description": "Create a Reddit ad group with native fields, including supported objectives and formats. Previews by default. Campaigns, ad groups and ads are always created PAUSED. Read reddit_get_write_schema(operation=ad_group_create) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_ad_group",
+      "title": "reddit update ad group",
+      "description": "Update a Reddit ad group with native fields, including supported objectives and formats. Previews by default. configured_status accepts PAUSED or ACTIVE only; ACTIVE can spend budget. Read reddit_get_write_schema(operation=ad_group_update) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad group to update. It must belong to adAccountId."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_ad",
+      "title": "reddit create ad",
+      "description": "Create a Reddit ad with native fields, including supported objectives and formats. Previews by default. Campaigns, ad groups and ads are always created PAUSED. Read reddit_get_write_schema(operation=ad_create) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_ad",
+      "title": "reddit update ad",
+      "description": "Update a Reddit ad with native fields, including supported objectives and formats. Previews by default. configured_status accepts PAUSED or ACTIVE only; ACTIVE can spend budget. Read reddit_get_write_schema(operation=ad_update) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad to update. It must belong to adAccountId."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_saved_audience",
+      "title": "reddit create saved audience",
+      "description": "Create a Reddit saved audience with native fields, including supported objectives and formats. Previews by default. Read reddit_get_write_schema(operation=saved_audience_create) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_saved_audience",
+      "title": "reddit update saved audience",
+      "description": "Update a Reddit saved audience with native fields, including supported objectives and formats. Previews by default. Read reddit_get_write_schema(operation=saved_audience_update) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit saved audience to update. It must belong to adAccountId."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_custom_audience",
+      "title": "reddit create custom audience",
+      "description": "Create a Reddit custom audience with native fields, including supported objectives and formats. Previews by default. Read reddit_get_write_schema(operation=custom_audience_create) and the current configuration before edits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_upload_creative_assets",
+      "title": "reddit upload creative assets",
+      "description": "Reddit upload creative assets using the native schema asset_upload. Preview first. Imports are asynchronous; poll the returned handles. Does not activate ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "parentId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {},
+              "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+            },
+            "minItems": 1,
+            "maxItems": 50,
+            "description": "Native item records; read the matching Reddit write schema before previewing."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "parentId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_post",
+      "title": "reddit create post",
+      "description": "Reddit create post using the native schema post_create. Preview first. Imports are asynchronous; poll the returned handles. Does not activate ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "parentId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "parentId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_catalog",
+      "title": "reddit create catalog",
+      "description": "Reddit create catalog using the native schema catalog_create. Preview first. Imports are asynchronous; poll the returned handles. Does not activate ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "parentId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit business ID that owns adAccountId; reddit_health_check returns it as business_id."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "parentId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_create_product_set",
+      "title": "reddit create product set",
+      "description": "Reddit create product set using the native schema product_set_create. Preview first. Imports are asynchronous; poll the returned handles. Does not activate ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "parentId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Product catalog ID owned by the business of adAccountId. List them with reddit_get_catalogs."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "parentId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_upsert_products",
+      "title": "reddit upsert products",
+      "description": "Reddit upsert products using the native schema products_upsert. Preview first. Imports are asynchronous; poll the returned handles. Does not activate ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "parentId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Product catalog ID owned by the business of adAccountId. List them with reddit_get_catalogs."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {},
+              "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+            },
+            "minItems": 1,
+            "maxItems": 100,
+            "description": "Native item records; read the matching Reddit write schema before previewing."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "parentId",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_rename_campaign",
+      "title": "reddit rename campaign",
+      "description": "Rename one Reddit campaign. The name is the only thing that changes. Previews by default.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "campaignId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit campaign to rename. It must belong to adAccountId."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500,
+            "description": "New name, 3 to 500 characters. This is the only thing the call changes."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "campaignId",
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_rename_ad_group",
+      "title": "reddit rename ad group",
+      "description": "Rename one Reddit ad group. The name is the only thing that changes. Previews by default.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "adGroupId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad group to rename. It must belong to adAccountId."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500,
+            "description": "New name, 3 to 500 characters. This is the only thing the call changes."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "adGroupId",
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_rename_ad",
+      "title": "reddit rename ad",
+      "description": "Rename one Reddit ad. The name is the only thing that changes. Previews by default.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "adId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit ad to rename. It must belong to adAccountId."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500,
+            "description": "New name, 3 to 500 characters. This is the only thing the call changes."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "adId",
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_rename_ad_account",
+      "title": "reddit rename ad account",
+      "description": "Rename the allowed Reddit ad account. The name is the only thing that changes. Previews by default.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500,
+            "description": "New name, 3 to 500 characters. This is the only thing the call changes."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_post",
+      "title": "reddit update post",
+      "description": "Update supported Reddit post fields; preview by default. Read reddit_get_write_schema(operation=post_update).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit post to update. It must belong to adAccountId, directly or through its profile or business."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_asset",
+      "title": "reddit update asset",
+      "description": "Update supported Reddit asset fields; preview by default. Read reddit_get_write_schema(operation=asset_update).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit asset to update. It must belong to adAccountId, directly or through its profile or business."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_catalog",
+      "title": "reddit update catalog",
+      "description": "Update supported Reddit catalog fields; preview by default. Read reddit_get_write_schema(operation=catalog_update).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit catalog to update. It must belong to adAccountId, directly or through its profile or business."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "reddit_update_product_set",
+      "title": "reddit update product set",
+      "description": "Update supported Reddit product set fields; preview by default. Read reddit_get_write_schema(operation=product_set_update).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "adAccountId": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[\\w.-]{1,128}$",
+            "description": "ID of the Reddit product set to update. It must belong to adAccountId, directly or through its profile or business."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
+          },
+          "confirm": {
+            "type": "boolean",
+            "default": false,
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+          }
+        },
+        "required": [
+          "adAccountId",
+          "id",
+          "data"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Original tool result: parsed JSON when the text is JSON, otherwise the text or multiple MCP content blocks. Provider fields depend on the selected query."
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "Reddit Ads guide",
+      "title": "Reddit Ads guide",
+      "uri": "reddit-ads://guide",
+      "description": "Coverage, prerequisites, units, renaming and known limits of this server. Same content as reddit_get_setup_guide.",
+      "mimeType": "application/json"
+    },
+    {
+      "name": "Reddit Ads reporting catalog",
+      "title": "Reddit Ads reporting catalog",
+      "uri": "reddit-ads://reporting-catalog",
+      "description": "Every reporting metric with its category and unit note, and every dimension with whether Reddit accepts it as a breakdown.",
+      "mimeType": "application/json"
+    }
+  ],
+  "prompts": []
+}
