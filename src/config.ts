@@ -16,7 +16,7 @@ const schema = z.object({
   clientId: z.string().min(1).max(256).optional(),
   clientSecret: secret,
   allowedAccountIds: z.array(nativeId).min(1).max(200),
-  enableWrites: z.boolean().default(false),
+  enableWrites: z.boolean().prefault(false),
   userAgent: z.string().regex(/^[\x20-\x7e]{1,256}$/).optional(),
 });
 

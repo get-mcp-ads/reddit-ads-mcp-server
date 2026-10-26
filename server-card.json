@@ -2,7 +2,7 @@
   "serverInfo": {
     "name": "@getmcpads/reddit-ads-mcp-server",
     "title": "Reddit Ads MCP server: 31 read tools, 22 opt-in preview-first writes.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "websiteUrl": "https://www.getmcpads.com/tools/reddit-ads",
     "icons": [
       {
@@ -29,7 +29,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -54,8 +54,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -102,7 +102,6 @@
         "required": [
           "operation"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -113,7 +112,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -138,8 +137,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -168,7 +167,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -193,8 +192,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -222,7 +221,6 @@
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -233,7 +231,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -258,8 +256,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -284,22 +282,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -310,7 +307,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -335,8 +332,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -370,7 +367,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -381,7 +377,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -406,8 +402,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -432,22 +428,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -458,7 +453,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -483,8 +478,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -518,7 +513,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -529,7 +523,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -554,8 +548,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -580,22 +574,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -606,7 +599,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -631,8 +624,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -666,7 +659,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -677,7 +669,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -702,8 +694,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -728,22 +720,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -754,7 +745,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -779,8 +770,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -814,7 +805,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -825,7 +815,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -850,8 +840,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -876,22 +866,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -902,7 +891,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -927,8 +916,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -962,7 +951,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -973,7 +961,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -998,8 +986,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1024,22 +1012,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1050,7 +1037,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1075,8 +1062,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1110,7 +1097,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1121,7 +1107,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1146,8 +1132,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1181,7 +1167,6 @@
           "adAccountId",
           "adGroupId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1192,7 +1177,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1217,8 +1202,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1255,33 +1240,32 @@
             "description": "Targeting dimension whose valid values to list."
           },
           "query": {
+            "description": "Search text for communities. Ignored for the other kinds.",
             "type": "string",
-            "maxLength": 100,
-            "description": "Search text for communities. Ignored for the other kinds."
+            "maxLength": 100
           },
           "country": {
+            "description": "Two-letter uppercase country code, such as US, for kinds that accept a country.",
             "type": "string",
-            "pattern": "^[A-Z]{2}$",
-            "description": "Two-letter uppercase country code, such as US, for kinds that accept a country."
+            "pattern": "^[A-Z]{2}$"
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "kind"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1292,7 +1276,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1317,8 +1301,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1343,22 +1327,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1369,7 +1352,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1394,8 +1377,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1420,22 +1403,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -1446,7 +1428,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -1471,8 +1453,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -1507,6 +1489,8 @@
             "description": "Report end in UTC on the hour, after startsAt. Hourly breakdowns cover at most seven days."
           },
           "fields": {
+            "minItems": 1,
+            "maxItems": 100,
             "type": "array",
             "items": {
               "type": "string",
@@ -1960,11 +1944,12 @@
                 "VIEW_ATTRIBUTION_WINDOW"
               ]
             },
-            "minItems": 1,
-            "maxItems": 100,
             "description": "Native Reddit field names, e.g. IMPRESSIONS, CLICKS, SPEND, CONVERSION_SIGN_UP_CLICKS, CONVERSION_SIGN_UP_VIEWS. Use reddit_get_reporting_schema for supported fields; never guess names. Lowercase spellings are accepted."
           },
           "breakdowns": {
+            "description": "Native breakdowns, e.g. CAMPAIGN_ID, AD_GROUP_ID or AD_ID. At most three. Lowercase spellings are accepted. API compatibility constraints still apply.",
+            "default": [],
+            "maxItems": 3,
             "type": "array",
             "items": {
               "type": "string",
@@ -1990,27 +1975,24 @@
                 "COMMUNITY",
                 "LANGUAGE"
               ]
-            },
-            "maxItems": 3,
-            "default": [],
-            "description": "Native breakdowns, e.g. CAMPAIGN_ID, AD_GROUP_ID or AD_ID. At most three. Lowercase spellings are accepted. API compatibility constraints still apply."
+            }
           },
           "filter": {
+            "description": "Optional native Reddit report filter expression, passed unchanged.",
             "type": "string",
-            "maxLength": 1000,
-            "description": "Optional native Reddit report filter expression, passed unchanged."
+            "maxLength": 1000
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
@@ -2019,7 +2001,6 @@
           "endsAt",
           "fields"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2030,7 +2011,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2055,8 +2036,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2086,23 +2067,22 @@
             "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "profileId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2113,7 +2093,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2138,8 +2118,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2169,23 +2149,22 @@
             "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "profileId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2196,7 +2175,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2221,8 +2200,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2256,7 +2235,6 @@
           "adAccountId",
           "id"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2267,7 +2245,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2292,8 +2270,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2323,14 +2301,14 @@
             "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
           },
           "uploadIds": {
+            "minItems": 1,
+            "maxItems": 50,
             "type": "array",
             "items": {
               "type": "string",
               "pattern": "^[\\w.-]{1,128}$",
               "description": "Upload ID returned by reddit_upload_creative_assets."
             },
-            "minItems": 1,
-            "maxItems": 50,
             "description": "Upload IDs returned by reddit_upload_creative_assets, 1 to 50."
           }
         },
@@ -2339,7 +2317,6 @@
           "profileId",
           "uploadIds"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2350,7 +2327,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2375,8 +2352,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2410,7 +2387,6 @@
           "adAccountId",
           "receipt"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2421,7 +2397,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2446,8 +2422,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2472,33 +2448,32 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "adIds": {
+            "description": "Specific ad IDs to resolve, 1 to 20. When omitted, the account's ads are read page by page.",
+            "minItems": 1,
+            "maxItems": 20,
             "type": "array",
             "items": {
               "type": "string",
               "pattern": "^[\\w.-]{1,128}$",
               "description": "Ad ID that belongs to adAccountId."
-            },
-            "minItems": 1,
-            "maxItems": 20,
-            "description": "Specific ad IDs to resolve, 1 to 20. When omitted, the account's ads are read page by page."
+            }
           },
           "limit": {
+            "description": "Ads to read when adIds is omitted. At most 20 are resolved per call; larger values are capped at 20.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Ads to read when adIds is omitted. At most 20 are resolved per call; larger values are capped at 20."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2509,7 +2484,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2534,8 +2509,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2560,22 +2535,21 @@
             "description": "Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2586,7 +2560,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2611,8 +2585,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2642,23 +2616,22 @@
             "description": "Product catalog ID. List them with reddit_get_catalogs."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "catalogId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2669,7 +2642,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2694,8 +2667,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2725,23 +2698,22 @@
             "description": "Product catalog ID. List them with reddit_get_catalogs."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "catalogId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2752,7 +2724,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2777,8 +2749,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2808,23 +2780,22 @@
             "description": "Product catalog ID. List them with reddit_get_catalogs."
           },
           "limit": {
+            "description": "Items per page, 1 to 100. Defaults to 50.",
+            "default": 50,
             "type": "integer",
             "minimum": 1,
-            "maximum": 100,
-            "default": 50,
-            "description": "Items per page, 1 to 100. Defaults to 50."
+            "maximum": 100
           },
           "cursor": {
+            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page.",
             "type": "string",
-            "maxLength": 3000,
-            "description": "Opaque next_cursor returned by the previous page. Omit it for the first page."
+            "maxLength": 3000
           }
         },
         "required": [
           "adAccountId",
           "catalogId"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2835,7 +2806,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2860,8 +2831,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": true,
@@ -2887,20 +2858,22 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2911,7 +2884,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -2936,8 +2909,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -2968,13 +2941,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -2982,7 +2958,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -2993,7 +2968,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3018,8 +2993,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3045,20 +3020,22 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3069,7 +3046,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3094,8 +3071,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3126,13 +3103,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3140,7 +3120,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3151,7 +3130,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3176,8 +3155,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3203,20 +3182,22 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3227,7 +3208,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3252,8 +3233,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3284,13 +3265,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3298,7 +3282,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3309,7 +3292,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3334,8 +3317,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3361,20 +3344,22 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3385,7 +3370,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3410,8 +3395,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3442,13 +3427,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3456,7 +3444,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3467,7 +3454,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3492,8 +3479,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3519,20 +3506,22 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3543,7 +3532,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3568,8 +3557,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3599,20 +3588,23 @@
             "description": "Reddit profile ID (t2_...) attached to adAccountId. List them with reddit_get_profiles."
           },
           "data": {
+            "minItems": 1,
+            "maxItems": 50,
             "type": "array",
             "items": {
               "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
               "additionalProperties": {},
               "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
             },
-            "minItems": 1,
-            "maxItems": 50,
             "description": "Native item records; read the matching Reddit write schema before previewing."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3620,7 +3612,6 @@
           "parentId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3631,7 +3622,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3656,8 +3647,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3688,13 +3679,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3702,7 +3696,6 @@
           "parentId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3713,7 +3706,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3738,8 +3731,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3770,13 +3763,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3784,7 +3780,6 @@
           "parentId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3795,7 +3790,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3820,8 +3815,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3852,13 +3847,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3866,7 +3864,6 @@
           "parentId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3877,7 +3874,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3902,8 +3899,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -3933,20 +3930,23 @@
             "description": "Product catalog ID owned by the business of adAccountId. List them with reddit_get_catalogs."
           },
           "data": {
+            "minItems": 1,
+            "maxItems": 100,
             "type": "array",
             "items": {
               "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
               "additionalProperties": {},
               "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
             },
-            "minItems": 1,
-            "maxItems": 100,
             "description": "Native item records; read the matching Reddit write schema before previewing."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -3954,7 +3954,6 @@
           "parentId",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -3965,7 +3964,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -3990,8 +3989,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4027,9 +4026,9 @@
             "description": "New name, 3 to 500 characters. This is the only thing the call changes."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4037,7 +4036,6 @@
           "campaignId",
           "name"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4048,7 +4046,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4073,8 +4071,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4110,9 +4108,9 @@
             "description": "New name, 3 to 500 characters. This is the only thing the call changes."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4120,7 +4118,6 @@
           "adGroupId",
           "name"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4131,7 +4128,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4156,8 +4153,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4193,9 +4190,9 @@
             "description": "New name, 3 to 500 characters. This is the only thing the call changes."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4203,7 +4200,6 @@
           "adId",
           "name"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4214,7 +4210,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4239,8 +4235,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4271,16 +4267,15 @@
             "description": "New name, 3 to 500 characters. This is the only thing the call changes."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
           "adAccountId",
           "name"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4291,7 +4286,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4316,8 +4311,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4348,13 +4343,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4362,7 +4360,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4373,7 +4370,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4398,8 +4395,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4430,13 +4427,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4444,7 +4444,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4455,7 +4454,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4480,8 +4479,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4512,13 +4511,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4526,7 +4528,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4537,7 +4538,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4562,8 +4563,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,
@@ -4594,13 +4595,16 @@
           },
           "data": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
             "additionalProperties": {},
             "description": "Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object."
           },
           "confirm": {
-            "type": "boolean",
+            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.",
             "default": false,
-            "description": "False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it."
+            "type": "boolean"
           }
         },
         "required": [
@@ -4608,7 +4612,6 @@
           "id",
           "data"
         ],
-        "additionalProperties": false,
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "outputSchema": {
@@ -4619,7 +4622,7 @@
               {
                 "type": "object",
                 "properties": {},
-                "additionalProperties": true
+                "additionalProperties": {}
               },
               {
                 "type": "array",
@@ -4644,8 +4647,8 @@
         "required": [
           "result"
         ],
-        "additionalProperties": false,
-        "$schema": "http://json-schema.org/draft-07/schema#"
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "annotations": {
         "readOnlyHint": false,

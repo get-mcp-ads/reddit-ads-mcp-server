@@ -22,18 +22,18 @@ export type Collector = { tool(name: string, description: string, shape: ToolSha
 const idOf = (description: string) => z.string().regex(NATIVE_ID).refine(s => !s.includes(".."), "Invalid Reddit identifier.").describe(description);
 const adAccountId = idOf("Reddit ad account ID (a2_...) listed in REDDIT_ADS_ACCOUNT_IDS, not the business ID.");
 const account = { adAccountId };
-const limit = z.number().int().min(1).max(100).default(50).describe("Items per page, 1 to 100. Defaults to 50.");
+const limit = z.number().int().min(1).max(100).prefault(50).describe("Items per page, 1 to 100. Defaults to 50.");
 const cursor = z.string().max(3000).optional().describe("Opaque next_cursor returned by the previous page. Omit it for the first page.");
 const page = { limit, cursor };
-const confirm = z.boolean().default(false).describe("False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.");
-const native = z.record(z.unknown()).describe("Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object.");
+const confirm = z.boolean().prefault(false).describe("False previews locally and sends nothing to Reddit. True applies only this exact change, after the user approved it.");
+const native = z.record(z.string(), z.unknown()).describe("Native Reddit fields. Read reddit_get_write_schema first. Budgets and bids are microcurrency; a partial nested object replaces that whole object.");
 
 // Advertise native names to clients, while accepting their lowercase spelling.
 // Unknown names must still fail locally rather than silently dropping metrics.
 const reportingName = (names: string[]) => z.preprocess(value => (typeof value === "string" ? value.toUpperCase() : value), z.enum(names as [string, ...string[]]));
 const reportingFields = z.array(reportingName(REDDIT_SCHEMA.metrics)).min(1).max(100)
   .describe("Native Reddit field names, e.g. IMPRESSIONS, CLICKS, SPEND, CONVERSION_SIGN_UP_CLICKS, CONVERSION_SIGN_UP_VIEWS. Use reddit_get_reporting_schema for supported fields; never guess names. Lowercase spellings are accepted.");
-const reportingBreakdowns = z.array(reportingName(REDDIT_SCHEMA.breakdowns)).max(3).default([])
+const reportingBreakdowns = z.array(reportingName(REDDIT_SCHEMA.breakdowns)).max(3).prefault([])
   .describe("Native breakdowns, e.g. CAMPAIGN_ID, AD_GROUP_ID or AD_ID. At most three. Lowercase spellings are accepted. API compatibility constraints still apply.");
 const utcHour = (description: string) => z.string().regex(/^\d{4}-\d{2}-\d{2}T\d{2}:00:00Z$/).describe(description);
 
@@ -67,8 +67,8 @@ function errorMessage(name: string, error: unknown): string {
   if (error instanceof z.ZodError) {
     return error.issues.slice(0, 8).map(issue => {
       const where = issue.path.join(".") || "arguments";
-      if (name === "reddit_get_insights" && issue.code === "invalid_enum_value") {
-        return `${where}: Unknown value ${JSON.stringify(issue.received)}. Read reddit_get_reporting_schema for supported metric and breakdown names.`;
+      if (name === "reddit_get_insights" && issue.code === "invalid_value") {
+        return `${where}: Unknown value ${JSON.stringify(issue.input)}. Read reddit_get_reporting_schema for supported metric and breakdown names.`;
       }
       return `${where}: ${issue.message}`;
     }).join("; ");
@@ -80,7 +80,7 @@ function register(collector: Collector, api: RedditClient, name: string, descrip
   const schema = z.object(shape).strict();
   collector.tool(name, description, shape, async raw => {
     try {
-      const args = schema.parse(raw ?? {});
+      const args = schema.parse(raw ?? {}, { reportInput: true });
       if (Object.hasOwn(shape, "adAccountId")) api.assertAccount(String(args.adAccountId));
       return redditOutput(api, await fn(args));
     } catch (error) {

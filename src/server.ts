@@ -12,7 +12,7 @@ import { GUIDE, registerRedditReads, registerRedditWrites, type Collector } from
 import { REDDIT_DIMENSIONS, REDDIT_METRICS } from "./catalog.js";
 import { REDDIT_SCHEMA } from "./validation.js";
 
-export const PACKAGE_VERSION = "1.0.0";
+export const PACKAGE_VERSION = "1.0.1";
 export const DEFAULT_USER_AGENT = `node:reddit-ads-mcp-server:v${PACKAGE_VERSION} (self-hosted)`;
 
 export function createServer(input: RedditServerInput): McpServer {
